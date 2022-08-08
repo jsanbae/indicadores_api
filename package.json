@@ -1,0 +1,34 @@
+{
+  "name": "indicadores_api",
+  "version": "1.0.0",
+  "description": "API para obtener Indicadores Económicos de Chile",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon index.js",
+    "start:prod": "SET NODE_ENV=production&&nodemon index.js",
+    "test": "npx jest --detectOpenHandles --forceExit"
+  },
+  "keywords": [
+    "api",
+    "indicadores",
+    "uf",
+    "utm",
+    "ivp"
+  ],
+  "author": "Javier Sánchez",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsdom": "^16.4.0",
+    "mongoose": "^5.13.14",
+    "morgan": "^1.10.0",
+    "node-fetch": "^2.6.7",
+    "node-fetch-cache": "^2.0.3",
+    "winston": "^3.8.1"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3",
+    "supertest": "^6.2.4"
+  }
+}
