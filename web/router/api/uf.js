@@ -1,7 +1,19 @@
 const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const compression = require('compression')
+
 const indicadores = require('../../../src/indicadores')
 
 const router = express.Router()
+
+// gzip responses
+router.use(compression())
+
+ // Apply express middlewares
+ router.use(cors())
+ router.use(bodyParser.json())
+ router.use(bodyParser.urlencoded({ extended: true }))
 
 router
   .route('/')

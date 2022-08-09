@@ -2,7 +2,7 @@
 
 const logger = require('winston')
 const config = require('../config')
-const app = require('./server')
+const app = require('./app')
 
 
 const listen = (port) => {
