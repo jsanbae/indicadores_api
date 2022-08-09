@@ -1,0 +1,6 @@
+[build]
+  # This will be run the site build
+  command = "npm run build"
+
+  # functions build directory
+  functions = "functions"
