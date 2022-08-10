@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const compression = require('compression')
 
-const indicadores = require('../../../src/indicadores')
+const { uf:indicador } = require('../../../src/indicadores')
 
 const router = express.Router()
 
@@ -18,12 +18,12 @@ router.use(compression())
 router
   .route('/')
   .get(async (req, res) => {
-      const ufs = await indicadores.uf.getAll()
+      const data = await indicador.getAll()
       return res.status(200).json({
-        indicador: 'UF',
+        indicador: indicador.name,
         status: 'success',
-        results: ufs.length,
-        data: ufs,
+        results: data.length,
+        data: data,
         message:'OK'
       })
   })
@@ -32,15 +32,15 @@ router
   .route('/:date')
   .get(async (req, res) => {
     const date = req.params.date
-    const uf = await indicadores.uf.getByDate(date)
+    const data = await indicador.getByDate(date)
     
-    if (!uf.length) return res.status(404).json({indicador:'UF', status: 'not found', results: 0, data: [], message:'No hay registros para ' + date})
+    if (!data.length) return res.status(404).json({indicador: indicador.name, status: 'not found', results: 0, data: [], message:'No hay registros para ' + date})
 
     return res.status(200).json({
-      indicador:'UF',
+      indicador: indicador.name,
       status: 'success',
-      results: uf.length,
-      data: uf,
+      results: data.length,
+      data: data,
       message:'OK'
     })
   })
@@ -49,15 +49,15 @@ router
   .route('/:fromDate/:toDate')
   .get(async (req, res) => {
     const {fromDate, toDate} = req.params
-    const ufs = await indicadores.uf.getByDateRange(fromDate, toDate)
+    const data = await indicador.getByDateRange(fromDate, toDate)
     
-    if (!ufs.length) return res.status(404).json({indicador:'UF', status: 'not found', results: 0, data: [], message:`No hay registros entre fechas ${fromDate} a ${toDate}`})
+    if (!data.length) return res.status(404).json({indicador: indicador.name, status: 'not found', results: 0, data: [], message:`No hay registros entre fechas ${fromDate} a ${toDate}`})
 
     return res.status(200).json({
-      indicador:'UF',
+      indicador: indicador.name,
       status: 'success',
-      results: ufs.length,
-      data: ufs,
+      results: data.length,
+      data: data,
       message:'OK'
     })
   })
