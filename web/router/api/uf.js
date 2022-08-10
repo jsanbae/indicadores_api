@@ -46,7 +46,7 @@ router
   })
 
   router
-  .route('/:fromDate/:toDate')
+  .route('/range/:fromDate/:toDate')
   .get(async (req, res) => {
     const {fromDate, toDate} = req.params
     const data = await indicador.getByDateRange(fromDate, toDate)
