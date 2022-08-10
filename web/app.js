@@ -13,6 +13,7 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'))
 app.use(express.json())
 //app.use(express.static(`${__dirname}/public`))
 
+app.use('/v1/', router.index)
 app.use('/v1/uf/', router.uf)
 app.use('/v1/ivp/', router.ivp)
 app.use('/v1/utm/', router.utm)
