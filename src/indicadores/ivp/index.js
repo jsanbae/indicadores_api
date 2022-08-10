@@ -13,6 +13,7 @@ const getByDateRange = (dateFrom, dateTo) => {
 }
 
 module.exports = {
+    name: 'IVP',
     getAll: getAll,
     getByDate: getByDate,
     getByDateRange: getByDateRange
