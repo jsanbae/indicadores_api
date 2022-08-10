@@ -14,7 +14,7 @@ const getDataFromFile = async () => {
 
 const createDataFile = async (forceRebuild=false) => {
 
-    if (!forceRebuild && fs.existsSync(repositoryFile)) return
+    if (!forceRebuild || fs.existsSync(repositoryFile)) return
     
     if (fs.existsSync(repositoryFile)) fs.unlinkSync(repositoryFile)
 

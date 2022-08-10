@@ -13,6 +13,7 @@ const getByDateRange = (dateFrom, dateTo) => {
 }
 
 module.exports = {
+    name: 'UF',
     getAll: getAll,
     getByDate: getByDate,
     getByDateRange: getByDateRange
