@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "heroku-prebuild": "node create-env.js",
-    "start_dev": "nodemon index.js",
+    "start:dev": "nodemon index.js",
     "start": "node index.js",
     "test": "npx jest --detectOpenHandles --forceExit"
   },
