@@ -1,0 +1,279 @@
+openapi: 3.0.3
+info:
+  title: API indicadores Económicos de Chile
+  description: |-
+    Es una API para obtener indicadores económicos de Chile, tales como: UF, IVP y UTM
+  contact:
+    email: jsan5709@hotmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: https://indicadores-api.herokuapp.com/v1/
+tags:  
+  - name: UF
+    description: All related to UF indicator
+  - name: IVP
+    description: All related to IVP indicator
+  - name: UTM
+    description: All related to UTM indicator
+paths:
+  /uf:
+    get:
+      tags:
+        - UF
+      summary: Lists All UFs from 2022
+      description: Multiple UF values from 2022
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IndicadorSet'
+        '404':
+          description: Not found values
+  
+  /uf/{date}:
+    get:
+      tags:
+        - UF
+      summary: Get UF by Date
+      description: Returns a UF
+      parameters:
+        - name: date
+          in: path
+          description: UF date to return
+          required: true
+          schema:
+            type: string
+            example: 2022-01-01
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicadorSet'          
+        '404':
+          description: UF not found
+          
+  /uf/range/{fromDate}/{toDate}:
+    get:
+      tags:
+        - UF
+      summary: Get multiples UF by Date ranges
+      description: Returns multiples UF
+      parameters:
+        - name: fromDate
+          in: path
+          description: UF from date to return
+          required: true
+          schema:
+            type: string
+            example: 2022-01-01
+        - name: toDate
+          in: path
+          description: UF to date to return
+          required: true
+          schema:
+            type: string
+            example: 2022-01-01
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicadorSet'          
+        '404':
+          description: UF not found
+          
+  /ivp:
+    get:
+      tags:
+        - IVP
+      summary: Lists All IVPs from 2022
+      description: Multiple IVP values from 2022
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IndicadorSet'
+        '404':
+          description: Not found values
+          
+  /ivp/{date}:
+    get:
+      tags:
+        - IVP
+      summary: Get IVP by Date
+      description: Returns a IVP
+      parameters:
+        - name: date
+          in: path
+          description: IVP date to return
+          required: true
+          schema:
+            type: string
+            example: 2022-01-01
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicadorSet'          
+        '404':
+          description: IVP not found
+
+  /ivp/range/{fromDate}/{toDate}:
+    get:
+      tags:
+        - IVP
+      summary: Get multiples IVP by Date ranges
+      description: Returns multiples IVP
+      parameters:
+        - name: fromDate
+          in: path
+          description: IVP from date to return
+          required: true
+          schema:
+            type: string
+            example: 2022-01-01
+        - name: toDate
+          in: path
+          description: IVP to date to return
+          required: true
+          schema:
+            type: string
+            example: 2022-01-01
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicadorSet'          
+        '404':
+          description: IVP not found
+
+  /utm:
+    get:
+      tags:
+        - UTM
+      summary: Lists All UTM from 2010
+      description: Multiple UTM values from 2010
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IndicadorSet'
+        '404':
+          description: Not found values
+  
+  /utm/{year}/{month}:
+    get:
+      tags:
+        - UTM
+      summary: Get multiples UTM by Date ranges
+      description: Returns multiples UTM
+      parameters:
+        - name: year
+          in: path
+          description: Year to return
+          required: true
+          schema:
+            type: string
+            example: 2022
+        - name: month
+          in: path
+          description: Month to return
+          required: true
+          schema:
+            type: string
+            example: 8
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicadorSet'          
+        '404':
+          description: UTM not found
+
+  /utm/range/{fromDate}/{toDate}:
+    get:
+      tags:
+        - UTM
+      summary: Get multiples UTM by Date ranges
+      description: Returns multiples UTM
+      parameters:
+        - name: fromDate
+          in: path
+          description: UTM from date to return
+          required: true
+          schema:
+            type: string
+            example: 2022-01-01
+        - name: toDate
+          in: path
+          description: UTM to date to return
+          required: true
+          schema:
+            type: string
+            example: 2022-05-01
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicadorSet'          
+        '404':
+          description: UTM not found
+          
+components:
+  schemas:
+    Indicador:
+      type: object
+      properties:
+        fecha:
+          type: string
+          example: 2022-01-01
+        valor:
+          type: number
+          format: double
+          example: 30996.73
+    IndicadorSet:
+      type: object
+      properties:
+        indicador:
+          type: string
+          example: UF
+        status:
+          type: string
+          enum: ['success', 'not found']
+        results:
+          type: number
+          format: int32
+          example: 255
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Indicador'
+        message:
+         type: string
+         example: 'OK'
