@@ -5,12 +5,10 @@ const dotenv = require('dotenv')
 
 const configFilepath = `${__dirname}/../.env`
 
-if (!fs.existsSync(configFilepath)) {
-    console.error(`Not .env file found in ${configFilepath}`)
-    process.exit(1)
-}
+if (fs.existsSync(configFilepath)) dotenv.config({path: configFilepath})
 
-dotenv.config({path: configFilepath})
+if (!fs.existsSync(configFilepath)) console.info(`Not .env file found in ${configFilepath}, using default configuration.`)
+
 
 const logger = require('./components/logger')
 const mongodb = require('./components/mongodb')
