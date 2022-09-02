@@ -16,5 +16,6 @@ module.exports = {
     name: 'IVP',
     getAll: getAll,
     getByDate: getByDate,
-    getByDateRange: getByDateRange
+    getByDateRange: getByDateRange,
+    refresh: repository.refresh,
 }

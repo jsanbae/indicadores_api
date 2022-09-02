@@ -4,6 +4,19 @@ const {ivp:indicador} = require('../../../src/indicadores')
 const router = express.Router()
 
 router
+.route('/refresh')
+.get(async (req, res) => {
+    const data = await indicador.refresh()
+    return res.status(200).json({
+      indicador: indicador.name,
+      status: 'success',
+      results: data.length,
+      data: data,
+      message:'OK'
+    })
+})
+
+router
   .route('/')
   .get(async (req, res) => {
       const data = await indicador.getAll()

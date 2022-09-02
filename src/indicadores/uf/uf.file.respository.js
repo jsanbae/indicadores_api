@@ -14,7 +14,7 @@ const getDataFromFile = async () => {
 
 const createDataFile = async (forceRebuild=false) => {
 
-    if (!forceRebuild || fs.existsSync(repositoryFile)) return
+    if (!forceRebuild && fs.existsSync(repositoryFile)) return
     
     if (fs.existsSync(repositoryFile)) fs.unlinkSync(repositoryFile)
 
@@ -46,8 +46,14 @@ const getByDateRange = async (dateFrom, dateTo) => {
     return (ufs) ? ufs : []
 }
 
+const refresh = async () => {
+    await createDataFile(true)
+    return getDataFromFile()
+}
+
 module.exports = {
     getAll: getAll,
     getByDate: getByDate,
-    getByDateRange: getByDateRange
+    getByDateRange: getByDateRange,
+    refresh: refresh
 }

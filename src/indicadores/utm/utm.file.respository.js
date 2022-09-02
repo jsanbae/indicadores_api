@@ -49,8 +49,14 @@ const getByDateRange = async (dateFrom, dateTo) => {
     return (utms) ? utms : []
 }
 
+const refresh = async () => {
+    await createDataFile(true)
+    return getDataFromFile()
+}
+
 module.exports = {
     getAll: getAll,
     getMonthly: getMonthly,
-    getByDateRange: getByDateRange
+    getByDateRange: getByDateRange,
+    refresh: refresh,
 }

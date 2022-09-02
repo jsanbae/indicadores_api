@@ -16,5 +16,6 @@ module.exports = {
     name: 'UTM',
     getAll: getAll,
     getMonthly: getMonthly,
-    getByDateRange: getByDateRange
+    getByDateRange: getByDateRange,
+    refresh: repository.refresh,
 }
