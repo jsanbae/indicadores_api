@@ -23,5 +23,5 @@ For testing use the following command
 If you need help, please feel free to use the issue tracker (best for bug reports)
 
 ## Special Thanks to
- - Heroku (https://heroku.com) for host this API for free
- - Kaffeine (https://kaffeine.herokuapp.com/) for keep this app working on Heroku
+ - Railway.app (https://railway.app) for hosting this API for free
+ - Cron-job.org (https://cron-job.org/) for keep refreshing data for this app
